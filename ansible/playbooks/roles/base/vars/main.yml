@@ -1,0 +1,49 @@
+---
+# Base Configuration Flags
+_base_configure_timezone: true
+_base_configure_locale: true
+_base_configure_keyboard: true
+_base_configure_ntp: true
+_base_configure_hostname: true
+_base_configure_domain: true
+_base_configure_fqdn: true
+_base_configure_repositories: true
+_base_configure_update: true
+_base_configure_autoupdate: true
+
+
+# Timezone
+_base_timezone: "UTC"
+# Locale
+_base_locale: "en_US.UTF-8"
+# Keyboard
+_base_keyboard: "us"
+# NTP
+_base_ntp_servers:
+  - "time.cloudflare.com"
+# Hostname
+_base_hostname: "pve.oglesby.io"
+# Domain
+_base_domain: "oglesby.io"
+# FQDN
+_base_fqdn: "{{ _base_hostname }}.{{ _base_domain }}"
+# Repositories
+_base_enable_contrib: true
+_base_enable_no_subscription: true
+_base_enable_pve_updates: true
+_base_enable_pve_security: true
+_base_enable_pve_enterprise: false
+# Update
+_base_update: true
+_base_upgrade: true
+_base_dist_upgrade: false
+_base_autoremove: true
+_base_clean: true
+# Auto Update
+_base_autoupdate_schedule: "0 0 * * *"
+_base_autoupdate_email: "your_email"
+_base_autoupdate_email_on_error: true
+_base_autoupdate_email_on_success: true
+_base_autoupdate_reboot: true
+_base_autoupdate_reboot_time: "03:00"
+_base_autoupdate_reboot_message: "System is going down for reboot NOW!"

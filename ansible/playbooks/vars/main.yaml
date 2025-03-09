@@ -1,0 +1,14 @@
+---
+# Proxmox
+proxmox_host: "10.0.0.251"
+proxmox_user: "root@pam"
+proxmox_password: "your_password"
+
+# Role Configuration Flags
+configure_base: true
+configure_backup: true
+configure_metrics: false
+configure_network: true
+configure_security: true
+configure_storage: true
+configure_terraform: true

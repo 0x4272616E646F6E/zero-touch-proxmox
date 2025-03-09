@@ -1,0 +1,14 @@
+---
+_backup_schedule: "0 0 * * *"
+_backup_email: "brandon.oglesby@outlook.com"
+_backup_email_on_error: true
+_backup_email_on_success: true
+_backup_retention: 7
+_backup_max_backups: 7
+_backup_max_bandwidth: 10
+_backup_max_parallel: 1
+_backup_mode: "snapshot"
+_backup_storage: "local-pve"
+_backup_storage_path: "/var/lib/vz/dump"
+_backup_storage_maxfiles: 7
+_backup_storage_maxsize: 100

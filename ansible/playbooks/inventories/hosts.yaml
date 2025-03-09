@@ -1,0 +1,6 @@
+all:
+  hosts:
+    proxmox:
+      ansible_host: pve.oglesby.io
+      ansible_user: root
+      ansible_ssh_private_key_file: /path/to/private/key

@@ -1,0 +1,71 @@
+---
+- name: Set Timezone
+  community.general.timezone:
+    name: "{{ _timezone }}"
+  when: _base_configure_timezone
+  changed_when: false
+
+- name: Set Locale
+  community.general.locale_gen:
+    name: "{{ _locale }}"
+  when: _base_configure_locale
+  changed_when: false
+
+- name: Set Keyboard
+  ansible.builtin.debconf:
+    name: "keyboard-configuration"
+    question: "keyboard-configuration/xkb-keymap"
+    value: "{{ _keyboard }}"
+    vtype: "string"
+  when: _base_configure_keyboard
+  changed_when: false
+
+- name: Configure NTP servers
+  ansible.builtin.template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+    owner: root
+    group: root
+    mode: '0644'
+  when: _base_configure_ntp
+  notify: Restart NTP service\
+
+- name: Set Hostname
+  ansible.builtin.hostname:
+    name: "{{ _hostname }}"
+  when: _base_configure_hostname
+  changed_when: false
+
+# - name: Set Domain
+#   ansible.builtin.lineinfile:
+
+- name: Set FQDN
+  ansible.builtin.hostname:
+    name: "{{ _fqdn }}"
+  when: _base_configure_fqdn
+  changed_when: false
+
+- name: Update
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: "{{ _upgrade }}"
+    dist_upgrade: "{{ _dist_upgrade }}"
+    autoremove: "{{ _autoremove }}"
+    clean: "{{ _clean }}"
+  when: _base_configure_update
+  changed_when: false
+
+- name: Auto Update
+  ansible.builtin.cron:
+    name: "Auto Update"
+    minute: "{{ _autoupdate_schedule.split(' ')[0] }}"
+    hour: "{{ _autoupdate_schedule.split(' ')[1] }}"
+    day: "{{ _autoupdate_schedule.split(' ')[2] }}"
+    month: "{{ _autoupdate_schedule.split(' ')[3] }}"
+    weekday: "{{ _autoupdate_schedule.split(' ')[4] }}"
+    job: "apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get -y clean"
+    user: "root"
+  when: _base_configure_autoupdate
+  changed_when: false
+# - name: Repositories
+#   ansible.builtin.lineinfile:

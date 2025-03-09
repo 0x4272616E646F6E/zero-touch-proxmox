@@ -1,0 +1,8 @@
+---
+_metrics_graphite: false
+_metrics_graphite_path: "/metrics"
+_metrics_influxdb: false
+_metrics_server: ""
+_metrics_port: 8086
+_metrics_protocol: "https"
+_metrics_mtu: 1500

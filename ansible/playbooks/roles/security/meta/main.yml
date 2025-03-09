@@ -1,0 +1,10 @@
+galaxy_info:
+  author: 0xBrandon
+  description: DevOps Engineer
+  company: N/A
+  license: MIT
+  min_ansible_version: "2.1"
+  galaxy_tags:
+    - proxmox
+    - security
+dependencies: []

@@ -1,0 +1,15 @@
+---
+- name: Configure Proxmox Host
+  hosts: proxmox
+  become: true
+  vars_files:
+    - vars/main.yaml
+
+  roles:
+    - base
+    - network
+    - storage
+    - security
+    - talos
+    - backup
+    - metrics

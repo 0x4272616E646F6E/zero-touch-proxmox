@@ -1,0 +1,26 @@
+---
+- name: Create User
+  ansible.builtin.command:
+    cmd: pveum user add {{ _terraform_username }}@pve --password {{ _terraform_password }}
+  changed_when: false
+  when: configure_terraform
+
+- name: Create Role
+  ansible.builtin.command:
+    cmd: |
+      pveum role add {{ _terraform_role }}
+      -privs "Datastore.AllocateSpace Datastore.AllocateTemplate Datastore.Audit
+      Pool.Allocate Sys.Audit Sys.Console Sys.Modify
+      VM.Allocate VM.Audit VM.Clone VM.Config.CDROM
+      VM.Config.Cloudinit VM.Config.CPU VM.Config.Disk
+      VM.Config.HWType VM.Config.Memory VM.Config.Network
+      VM.Config.Options VM.Migrate VM.Monitor VM.PowerMgmt
+      SDN.Use"
+  changed_when: false
+  when: create_user_result is succeeded
+
+- name: Assign Role
+  ansible.builtin.command:
+    cmd: pveum aclmod / -user {{ _terraform_username }}@pve -role {{ _terraform_role }}
+  changed_when: false
+  when: create_role_result is succeeded

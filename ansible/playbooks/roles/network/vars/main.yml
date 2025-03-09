@@ -1,0 +1,8 @@
+---
+# Network Configuration Flags
+_network_configure_nameservers: true
+
+
+# Nameservers
+_network_nameservers:
+  - "10.0.0.1"

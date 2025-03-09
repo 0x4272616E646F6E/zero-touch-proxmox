@@ -1,0 +1,6 @@
+---
+- name: Metrics Test
+  hosts: localhost
+  remote_user: root
+  roles:
+    - metrics
